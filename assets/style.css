@@ -1,0 +1,56 @@
+.header {
+    display: flex;
+    background-color: purple;
+    width: 100%
+    height: 10%;  
+}
+.header h1 {
+    left: 50%;
+    justify-content: space-around;
+    color: white;
+}
+.first-header {
+    display: flex
+}
+.second-header {
+    border: 5px black solid;
+    top: 100px;
+    margin-left: 110px
+}
+.search-bar {
+    display: ;
+}
+input {
+    padding: 10px;
+    width: 300px;
+    margin-top: -5px;
+    font-size: 17px;
+}
+.search-button button {
+    padding: 10px 10px 5px 10px;
+    width: 324px;
+    margin-top: 8px;
+    font-size: 17px;
+    background-color: #007FFF;
+    color: white;
+}
+.border-bottom {
+    border-bottom: 1px solid black;
+    width: 324px;
+    margin-top: 20px
+}
+.searched-cities {
+    
+    text-align: center;
+}
+.searched-cities button {
+    display: flex;
+    margin: 10px 10px 10px 0px;
+    padding: 10px 10px 5px 10px;
+    width: 324px;
+    font-size: 17px;
+    background-color: #a9a9a9;
+    color: black;
+    text-align: center;
+
+}
