@@ -42,8 +42,8 @@ function renderFiveDay(forecast) {
 
         cityName.textContent = forecast.city.name;
         temp.textContent = `Temp: ${forecast.list[i].main.temp}`;
-        wind.textContent = forecast.list[i].wind.speed;
-        humidity.textContent = forecast.list[i].main.humidity;
+        wind.textContent = `Wind: ${forecast.list[i].wind.speed}`;
+        humidity.textContent = `Humidity: ${forecast.list[i].main.humidity}`;
 
         card.setAttribute('style', 'margin:10px; background-color: blue; padding: 10px;')
 
@@ -69,7 +69,7 @@ function searchHistory() {
 
 function renderSearchHistory() {
     var searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || []
-    if (searchHistory.length) {
+    if (!searchHistory.length === 0) {
         document.querySelector('.searched-cities').innerHTML = '';
         for (let i = 0; i < searchHistory.length - 1; i++) {
             var cityButton = document.createElement('button');
