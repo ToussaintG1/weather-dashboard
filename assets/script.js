@@ -1,5 +1,14 @@
 var apiKey = 'ce015676241c31c5df0ef2fb61768d00'
 
+
+var date 
+date = document.querySelector('#currentDay')
+date.textContent = dayjs().format('dddd, MMMM D')
+var currentHour = dayjs().hour()
+document.querySelector('#cityDate').innerHTML = date;
+
+
+
 function getCoordinates(){
     var cityName = document.querySelector('#city').value
     var geoUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=${apiKey}`
@@ -30,6 +39,22 @@ function getForecast(lat,lon) {
            
 
 }
+function todayForecast() {
+        var card = document.createElement('div');
+        var cityName = document.createElement('h1');
+        var temp = document.createElement('p');  
+        var wind = document.createElement('p');  
+        var humidity = document.createElement('p'); 
+        
+        cityName.textContent = forecast.city.name;
+        temp.textContent = `Temp: ${forecast.list[i].main.temp} °F`;
+        wind.textContent = `Wind: ${forecast.list[i].wind.speed} MPH`;
+        humidity.textContent = `Humidity: ${forecast.list[i].main.humidity} %`;
+
+        card.append(cityName,temp,wind,humidity)
+        document.querySelector('.current-weather').append(card);
+
+}
 
 function renderFiveDay(forecast) {
     
@@ -41,11 +66,11 @@ function renderFiveDay(forecast) {
         var humidity = document.createElement('p');  
 
         cityName.textContent = forecast.city.name;
-        temp.textContent = `Temp: ${forecast.list[i].main.temp}`;
-        wind.textContent = `Wind: ${forecast.list[i].wind.speed}`;
-        humidity.textContent = `Humidity: ${forecast.list[i].main.humidity}`;
+        temp.textContent = `Temp: ${forecast.list[i].main.temp} °F`;
+        wind.textContent = `Wind: ${forecast.list[i].wind.speed} MPH`;
+        humidity.textContent = `Humidity: ${forecast.list[i].main.humidity} %`;
 
-        card.setAttribute('style', 'margin:10px; background-color: blue; padding: 10px;')
+        card.setAttribute('style', 'margin:10px; background-color: white; padding: 10px;')
 
         card.append(cityName,temp,wind,humidity)
         document.querySelector('.forecast').append(card);
