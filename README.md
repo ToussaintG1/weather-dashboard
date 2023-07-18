@@ -16,7 +16,7 @@ Once you are on the link you are free to use the application
 
 ## Deployed Link: 
 
-https://toussaintg1.github.io/password-generator/
+[https://toussaintg1.github.io/password-generator/](https://toussaintg1.github.io/weather-dashboard/)
 
 ## Usage
 
