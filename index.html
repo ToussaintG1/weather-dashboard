@@ -30,9 +30,11 @@
     </div>  
     <div class="weather">
         <div class="current-weather">
-            <h1 id="cityName">City </h1>
-               <h1 id="cityDate"> (9/13/2022)</h1>
-            <p>Temp</p>
+            <h1 id="cityName"></h1>
+            <h1 id="currentday"></h1>
+            <p id="temp"></p>
+            <p id="wind"></p>
+            <p id="humidity"></p>
         </div>
         <h1>5-Day Forecast:</h1>
         <div class="forecast">
@@ -44,7 +46,8 @@
 
 
    
-<script
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script
       src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
       integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
       crossorigin="anonymous"

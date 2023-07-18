@@ -2,10 +2,13 @@ var apiKey = 'ce015676241c31c5df0ef2fb61768d00'
 
 
 var date 
-date = document.querySelector('#currentDay')
+date = document.querySelector('#currentday')
 date.textContent = dayjs().format('dddd, MMMM D')
 var currentHour = dayjs().hour()
-document.querySelector('#cityDate').innerHTML = date;
+
+
+
+
 
 
 
@@ -22,6 +25,9 @@ function getCoordinates(){
             var {lat,lon} = data[0];
             getForecast(lat,lon);
         })
+        var displayCity
+        displayCity = document.querySelector('#cityName')
+        displayCity.textContent = cityName
 }
 
 function getForecast(lat,lon) {
@@ -75,6 +81,13 @@ function renderFiveDay(forecast) {
         card.append(cityName,temp,wind,humidity)
         document.querySelector('.forecast').append(card);
 
+        // Display For Upper Dashboard
+        var temp1 = document.querySelector('#temp')
+        var wind1 = document.querySelector('#wind')
+        var humidity1 = document.querySelector('#humidity')
+        temp1.textContent = `Temp: ${forecast.list[i].main.temp} °F`;
+        wind1.textContent = `Wind: ${forecast.list[i].wind.speed} MPH`;
+        humidity1.textContent = `Humidity: ${forecast.list[i].main.humidity} %`;
 
 
     }
@@ -114,4 +127,7 @@ document.querySelector('#search-button').addEventListener('click', function(){
     console.log('click search button')
     getCoordinates();
     searchHistory();
+    todayForecast();
+    renderSearchHistory();
 })
+

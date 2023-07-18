@@ -21,7 +21,7 @@
 }
 .current-weather {
     border: 2px black solid;
-    width: 500%;
+    width: 150%;
     /* margin-left: 110px */
 }
 .search-bar {
@@ -52,6 +52,7 @@ input {
     text-align: center;
 }
 .searched-cities button {
+    display: flex;
     margin: 10px 10px 10px 0px;
     padding: 10px 10px 5px 10px;
     width: 324px;
