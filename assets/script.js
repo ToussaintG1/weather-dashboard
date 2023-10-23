@@ -69,7 +69,7 @@ function getForecast(latlon) {
                     alert("Error: " + response.statusText);
                 } else {
                     return response.json().then(function(data){
-                        renderFiveDay(data);
+                        renderWeather(data);
                     })
                 }
             })
@@ -192,6 +192,39 @@ function renderWeather(data) {
         });
         localStorage.setItem("downloadedCities", JSON.stringify(array));
 
+};
+
+// load downloaded cities
+function getDownloadedCities() {
+    array = JSON.parse(localStorage.getItem('downloadedCities')) || [];
+    array.forEach((cityInput) => {
+        cities.classList = "bg-transparent text-center cities m-3";
+        cities.textContent = cityInput;
+        citiesList.appendChild(cities);
+        // Fetch data 
+        cities.addEventListener("click", function(event) {
+            citySearchInput.value = '';
+            let target = event.targt;
+            cityName.textContent = target.innerText;
+            var URL = 'https://api.openweathermap.org/data/2.5/weather?q=' + target.innerText + '&units=imperial&exclude=hourly,daily&appid=ce015676241c31c5df0ef2fb61768d00';
+            fetch(URL, {
+                cache: 'reload',
+            })
+            .then(function (response){
+                if(!response.ok) {
+                    alert("error: " + response.statusText);
+                } else {
+                    return response.json()
+                    .then(function (latlon) {
+                        getForecast();
+                    })
+                }
+            })
+            .catch(function (error) {
+                alert(error);
+            })
+        });
+    });
 }
 
 
