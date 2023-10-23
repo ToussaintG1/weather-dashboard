@@ -1,74 +1,120 @@
-.header {
+/*    Global    */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+.wrapper {
+    background-color: #484848;
     display: flex;
-    background-color: purple;
-    width: 100%
-    height: 10%;  
-    justify-content: flex-end;
+    flex-wrap: wrap;
+    flex-direction: row;
 }
-.header h1 {
-    margin-right: 70px;
-    color: white;
-}
-.container {
+
+
+/*   Header   */
+.cities-list {
+    font-weight: 600;
+    font-size: 15px;
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
-.first-header {
-    display: flex
+
+.cities {
+    border: none;
+    font-weight: 600;
 }
-.weather {
-    margin-top: 25px;
-    margin-left: 20px;
+
+.cities:hover {
+    color: #fff;
 }
+
+.custom-header {
+    background-color: #17dcff;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/*    Styles for the *CURRENT* Weather cards  */
+.custom-button {
+    width: auto;
+    min-width: 5vw;
+}
+
+.custom-button2 {
+    width: auto;
+    max-height: 5vh;
+    height: auto;
+}
+
+.custom-jumbotron {
+    display: flex;
+    flex-direction: row;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    height: 40vh;
+}
+
+.custom-div {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
 .current-weather {
-    border: 2px black solid;
-    width: 150%;
-    /* margin-left: 110px */
-}
-.search-bar {
-    display: ;
-}
-input {
-    padding: 10px;
-    width: 300px;
-    margin-top: -5px;
-    font-size: 17px;
-    
-}
-.search-button button {
-    padding: 10px 10px 5px 10px;
-    width: 324px;
-    margin-top: 8px;
-    font-size: 17px;
-    background-color: #007FFF;
-    color: white;
-}
-.border-bottom {
-    border-bottom: 1px solid black;
-    width: 324px;
-    margin-top: 20px
-}
-.searched-cities {
-    
-    text-align: center;
-}
-.searched-cities button {
-    display: flex;
-    margin: 10px 10px 10px 0px;
-    padding: 10px 10px 5px 10px;
-    width: 324px;
-    font-size: 17px;
-    background-color: #a9a9a9;
-    color: black;
-    text-align: center;
-
+    width: 40%;
 }
 
+.city-stats-list {
+    list-style: none;
+    text-align: left;
+    font-size: 30px;
+}
+
+.img-div {
+    width: 40%;
+    height: 40vh;
+}
+
+.city-name {
+    font-size: 45px;
+}
+
+/*     5 day forecast      */
 .forecast {
     display: flex;
-    margin: 10px;
-    border: 2px solid black;
-    background-color: grey;
+    flex-direction: column;
+    flex-wrap: wrap;
+
 }
+
+.item-1,
+.item-2,
+.item-3,
+.item-4,
+.item-5 {
+    background-color: black;
+}
+
+
+.neon-row {
+    border-radius: 1.5rem;
+}
+
+.neon-card {
+    box-shadow: white;
+}
+
+.neon {
+    text-align: center;
+    color: #17dcff;
+    text-shadow:
+        .1vw 0vw .25vw #1e91f0, .2vw 0vw .25vw #1e3df0;
+}
+
 .toussaint-pic img {
     width: 50%;
 }
