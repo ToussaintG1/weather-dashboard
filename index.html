@@ -34,13 +34,16 @@
   </header>
 
   <!-- Main Class `wrapper` -->
-  <main class="wrapper">
+  <main class="main">
+
+    <!-- Current Card -->
 
     <section class="col d-flex flex-wrap custom-div">
         <section class="card bg-dark text-white custom-jumbotron bg-transparent">
             <div class="row w-100 flex-wrap">
               <div class="col current-weather">
                 <h2 class="text-blue text-center">Your Current Weather</h2>
+                <p class="text-blue text-center">Brought to you by: Toussaint Gilbert</p>
                 <ul class="city-stats-list">
                   <li class="city-name mx-1 neon" id="cities-name"></li>
                   <li class="mx-1 neon" id="temp"></li>
@@ -51,9 +54,13 @@
               <div class="col img-div">
                 <div class="toussaint-pic"><img src="./assets/Profile Pic-2.jpg" alt="">></div>
         </section>
-  </main>
+
 
   <!-- Cards for weather *created by JS* imported by bootstrap CSS library -->
+  <section class="col forecast">
+    <h3 class="text-light">5-Day Forecast:</h3>
+    <div class="row neon-row justify-content-around m-1 p-1">
+
   <div class="card bg-transparent neon-card" style="width: 13rem;">
     <ul class="list-group bg-dark list-group-flush">
       <li class="list-group-item item-1 bg-transparent neon"></li>
@@ -113,7 +120,7 @@
 </section>
 </section>
 
-
+</main>
     <script src="./assets/script.js"></script>
 </body>
 </html>

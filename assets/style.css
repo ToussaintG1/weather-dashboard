@@ -5,7 +5,7 @@
 }
 
 
-.wrapper {
+.main {
     background-color: #484848;
     display: flex;
     flex-wrap: wrap;
@@ -101,11 +101,23 @@
 
 
 .neon-row {
+    box-shadow:
+    0 0 0.1px 0.4px white,
+    0 0 0.4px 0.6px white,
+    0 0 4px 0.4px white,
+    inset 0 0 1.5px 0.4px white,
+    inset 0 0 0.4px 0.2px white,
+    inset 0 0 0.5px 0.2px white;
     border-radius: 1.5rem;
 }
 
 .neon-card {
-    box-shadow: white;
+    box-shadow: 0 0 0.1px 0.4px white,
+    0 0 0.4px 0.6px lightblue,
+    0 0 4px 0.4px lightblue,
+    inset 0 0 0.5px 0.2px lightblue,
+    inset 0 0 0.2px 0.1px lightblue;,
+    inset 0 0 0.5px 0.2px lightblue;
 }
 
 .neon {

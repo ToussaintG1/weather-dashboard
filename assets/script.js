@@ -20,9 +20,53 @@ var wind = document.getElementById("wind");
 var humidity = document.getElementById("humidity");
 
 
+// weather based on user location
+function userWeather(position) {
+    var lat = position.coords.latitude;
+    var lon = position.coords.longitude;
+    // callBack for weather
+    var userGeoUrl =` https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`
 
+    var timestampDate = position.timestamp;
+    var date = new Date(timestampDate);
+    var userLocation = promt("Where are you currently located");
+    cityName.innerText =userLocation.toUpperCase() + '' + '(' + date.toDateString() + ')';
 
+    fetch(userGeoUrl, {
+        method: 'get',
+        credentials: 'same-origin',
+        redirect: 'follow',
+    })
+    .then(function (response) {
+        if (!response.ok) {
+            alert('error: ' + response.statusText);
+        } else {
+            return response.json()
+            .then(function (data) {
+                renderWeather(data);
+            });
+        }
+    })
+    .catch(function (error) {
+        alert(error)
+    });
+};
 
+// Obtaining User location
+function userLocation() {
+    var good = (position) => {
+        if(position) {
+            userWeather(position);
+        }
+    };
+    var bad = (error) => {
+        if (error) {
+            alert('Update settings to allow location or refresh the page.')
+        }
+    };
+ 
+    navigator.geolocation.getCurrentPosition(good, bad);
+}
 
 
 
@@ -225,49 +269,7 @@ function getDownloadedCities() {
             })
         });
     });
-}
 
-
-
-// function renderFiveDay(forecast) {
-    
-//     for (let i = 0; i < forecast.list.length; i += 8) {
-//         var card = document.createElement('div');
-//         var cityName = document.createElement('h2');
-//         var temp = document.createElement('p');  
-//         var wind = document.createElement('p');  
-//         var humidity = document.createElement('p');  
-
-//         cityName.textContent = forecast.city.name;
-//         temp.textContent = `Temp: ${forecast.list[i].main.temp} °F`;
-//         wind.textContent = `Wind: ${forecast.list[i].wind.speed} MPH`;
-//         humidity.textContent = `Humidity: ${forecast.list[i].main.humidity} %`;
-
-//         card.setAttribute('style', 'margin:10px; background-color: white; padding: 10px;')
-
-//         card.append(cityName,temp,wind,humidity)
-//         document.querySelector('.forecast').append(card);
-
-//         // Display For Upper Dashboard
-//         var temp1 = document.querySelector('#temp')
-//         var wind1 = document.querySelector('#wind')
-//         var humidity1 = document.querySelector('#humidity')
-//         temp1.textContent = `Temp: ${forecast.list[i].main.temp} °F`;
-//         wind1.textContent = `Wind: ${forecast.list[i].wind.speed} MPH`;
-//         humidity1.textContent = `Humidity: ${forecast.list[i].main.humidity} %`;
-
-
-//     }
-// }
-
-// function searchHistory() {
-//     var searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || []
-//     var cityName = document.querySelector('#city').value
-//     if (!searchHistory.includes(cityName)) {
-//         searchHistory.push(cityName)
-//         localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
-//         renderSearchHistory();
-//     }
    
    
 
@@ -303,5 +305,6 @@ clearButton.addEventListener("click", function() {
 searchButton.addEventListener("click", getCoordinates);
 
 // As soon as page opens:
-
+getDownloadedCities();
+userLocation();
 
