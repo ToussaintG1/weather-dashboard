@@ -4,7 +4,7 @@ var searchButton = document.getElementById("search-button");
 var clearButton = document.getElementById("clear-button");
 // City Variables
 var citiesList = document.getElementById("cities-list");
-var cityInput = document.getElementById("city");
+var citySearchInput = document.getElementById("city");
 var cityName = document.getElementById("cities-name")
 var citiesButtons = document.querySelectorAll(".cities");
 // Array variable
@@ -20,10 +20,6 @@ var wind = document.getElementById("wind");
 var humidity = document.getElementById("humidity");
 
 
-var date 
-date = document.querySelector('#currentday')
-date.textContent = dayjs().format('dddd, MMMM D')
-var currentHour = dayjs().hour()
 
 
 
@@ -32,12 +28,17 @@ var currentHour = dayjs().hour()
 
 
 function getCoordinates(){
-    var cityName = document.querySelector('#city').value
+    var cityName = citySearchInput.value.trim();
+
     var geoUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=${apiKey}`
 
-    fetch(geoUrl)   
+    fetch(geoUrl, {
+        cache: 'reload',
+    })   
         .then(function(response){
-            return response.json()
+            if (!response.ok) {
+                alert("error: " + response.statusText);
+            }
         })
         .then(function(data) {
             console.log(data);
@@ -49,21 +50,35 @@ function getCoordinates(){
         displayCity.textContent = cityName
 }
 
-function getForecast(lat,lon) {
+// Functions
+// Get weather using lat &
+
+function getForecast(latLon) {
+    var lat =latLon.coord.lat
+    var lon = latLon.coord.lon
        
         var forecastUrl = ` https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`
     
-        fetch(forecastUrl)   
+        fetch(forecastUrl, {
+            method: 'get',
+            credentials: 'same-origin',
+            redirect: 'follow',
+            cache: 'reload',
+        })   
             .then(function(response){
-                return response.json()
+                if (!response.ok) {
+                    alert("Error: " + response.statusText);
+                } else {
+                    return response.json().then(function(data){
+                        renderFiveDay(data);
+                    })
+                }
             })
-            .then(function(data) {
-                console.log('Forecast', data);
-                renderFiveDay(data);
+            .catch(function (error){
+                alert(error)
             })
-           
-
 }
+
 function todayForecast() {
         var card = document.createElement('div');
         var cityName = document.createElement('h1');
