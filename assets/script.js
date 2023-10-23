@@ -10,6 +10,15 @@ var citiesButtons = document.querySelectorAll(".cities");
 // Array variable
 var array = [];
 
+// Weather Variables
+
+// Temperature
+var temp = document.getElementById('temp');
+// Wind
+var wind = document.getElementById("wind");
+// humidity
+var humidity = document.getElementById("humidity");
+
 
 var date 
 date = document.querySelector('#currentday')
