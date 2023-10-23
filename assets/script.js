@@ -1,5 +1,14 @@
 var apiKey = 'ce015676241c31c5df0ef2fb61768d00';
-
+// Search & Clear Button
+var searchButton = document.getElementById("search-button");
+var clearButton = document.getElementById("clear-button");
+// City Variables
+var citiesList = document.getElementById("cities-list");
+var cityInput = document.getElementById("city");
+var cityName = document.getElementById("cities-name")
+var citiesButtons = document.querySelectorAll(".cities");
+// Array variable
+var array = [];
 
 
 var date 
