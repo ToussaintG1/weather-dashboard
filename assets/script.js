@@ -64,8 +64,14 @@ function userLocation() {
             alert('Update settings to allow location or refresh the page.')
         }
     };
+
+    var optionsCallback = {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0,
+    };
  
-    navigator.geolocation.getCurrentPosition(good, bad);
+    navigator.geolocation.getCurrentPosition(good, bad, optionsCallback);
 }
 
 
@@ -306,5 +312,5 @@ searchButton.addEventListener("click", getCoordinates);
 
 // As soon as page opens:
 getDownloadedCities();
-userLocation();
+weatherGeo();
 
