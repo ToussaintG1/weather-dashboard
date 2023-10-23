@@ -151,23 +151,50 @@ function renderWeather(data) {
         cityName.textContent = citySearchInput.value.toUpperCase() + '(' + date.toDateString() + ')';
     }
     temp.textContent = 'Temperature: ' + data.current.temp + 'F';
+    humidity.textContent = 'Humidity: ' + data.current.humidity + ' %';
+    wind.textContent = 'Wind: ' + data.current.wind_speed + ' MPH';
+
+        // 5 Day forecast
+        const dates = document.querySelectorAll(".item-1");
+        const icons = document.querySelectorAll(".item-2");
+        const temps = document.querySelectorAll(".item-3");
+        const winds = document.querySelectorAll(".item-4");
+        const humidities = document.querySelectorAll(".item-5");
+
+        // Loop the data 
+        for (var i = 0; i < 5; i++) {
+            var timestampDate = data.daily[i].dt;
+            newDate = new Date( timestampDate * 1000);
+            dates[i].innerHTML = newDateString();
+            temps[i].innerHTML = "Temprature: " + data.daily[i].temp.day + "F";
+            winds[i].innerHTML = "Wind-Speed: " + data.daily[i].wind_speed + "MPH";
+            humidities[i].innerHTML = "Humiditiy: " + data.daily[i].humidity + "%";
+
+            // Importing bootstrap sun and cloud icons dependent on current weather
+            if (data.daily[i].clouds >= 36) {
+                icons[i].innerHTML = "<i class=\"fa-solid fa-cloud-sun\" style=\"font-size:36px\"></i>"
+            } else if (data.daily[i].rain >= 5) {
+                icons[i].innerHTML = "<i class=\"fa-solid fa-cloud-showers-heavy\"></i>"
+            } else if (data.daily[i].rain >= 3 && data.daily[i].rain < 5 && data.daily[i].clouds >= 36) {
+                icons[i].innerHTML = "<i class=\"fa-solid fa-cloud-rain\"></i>"
+            } else {
+                icons[i].innerHTML = "<i class=\"fa-solid fa-sun\" style=\"font-size:36px\"></i>"
+            }
+        }
+        // Save to storage
+        array = [];
+        var downloadedCities = document.querySelectorAll('.cities');
+        downloadedCities.forEach((cities) => {
+            // Check whether already downlaoded or not
+            if(!array.includes(cities.textContent) && cities.textContent) {
+                array.push(cities.textContent);
+                }    
+        });
+        localStorage.setItem("downloadedCities", JSON.stringify(array));
+
 }
-// function todayForecast() {
-//         var card = document.createElement('div');
-//         var cityName = document.createElement('h1');
-//         var temp = document.createElement('p');  
-//         var wind = document.createElement('p');  
-//         var humidity = document.createElement('p'); 
-        
-//         cityName.textContent = forecast.city.name;
-//         temp.textContent = `Temp: ${forecast.list[i].main.temp} °F`;
-//         wind.textContent = `Wind: ${forecast.list[i].wind.speed} MPH`;
-//         humidity.textContent = `Humidity: ${forecast.list[i].main.humidity} %`;
 
-//         card.append(cityName,temp,wind,humidity)
-//         document.querySelector('.current-weather').append(card);
 
-// }
 
 // function renderFiveDay(forecast) {
     
