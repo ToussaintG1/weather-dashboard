@@ -280,7 +280,7 @@ function getDownloadedCities() {
    
 
 
-
+// Find search History
 function renderSearchHistory() {
     var searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || []
     if (!searchHistory.length === 0) {
@@ -298,7 +298,7 @@ function renderSearchHistory() {
     cityButton.textContent = document.querySelector('#city').value;
     document.querySelector('.searched-cities').append(cityButton);  
 }
-
+}
 function clearRecentlyViewed() {
     localStorage.clear();
     citiesList.innerHTML = '';
